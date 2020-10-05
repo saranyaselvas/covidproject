@@ -1,0 +1,273 @@
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <body>
+  <div class="DDStyle" id="states" onChange="populateCities()">
+  States :
+  <select id="StatesList" class="DDStyle" >
+  </select>
+</div>
+<div id="Cities" class="DDStyle">
+  Cities :
+  <select id="CitiesList" class="DDStyle">
+  </select>
+</div>
+  <script>
+    var States = [{
+  key: "Maharashtra" ,
+  name: "Maharashtra",
+  cities: ["Ahmednagar","Akola","Amravati","Aurangabad","Bhandara","Beed","Buldhana","Chandrapur","Dhule","Gadchiroli","Gondia","Hingoli","Jalgaon","Jalna","Kolhapur","Latur","Mumbai","Nagpur","Nanded","Nandurbar","Nashik","Osmanabad","Parbhani","Palghar","Pune","Raigard","Ratnagiri","Sangli","Satara","Sindhudurg","Solapur","Thane","Wardha","Washim","Yavatmal"]
+}, {
+  key: "Andhra Pradesh",
+  name: "Andhra Pradesh",
+  cities: ["Chittoor", "Anantapur","East Godavari","Guntur","Krishna","Kurnool","Prakasam","Srikakulam","Nellore",
+                                    "Visakhapatnam","Vizianagaram","West Godavari","Kadapa"]
+}, {
+  key: "Karnataka",
+  name: "Karnataka",
+  cities: ["Bagalkote","Bengaluru Rural","Bengaluru Urban","Belagavi","Ballari","Bidar","Chamarajanagara", "Chikkamagaluru","Chikkaballapura",
+                            "Chitradurga","Davanagere","Dharwad","Dakshina-Kannada","Gadag","Hassan","Haveri","Kodagu","Kalaburagi",
+                            "Kolar","Koppal","Mandya","Mysuru","Raichur","Shivamogga","Tumakuru","Udupi","Vijayapura","Uttara-Kannada","Ramanagara","Yadgir"]
+},{
+  key: "Telangana",
+  name: "Telangana",
+  cities: ["Mancherial","Adilabad","Nirmal","Komaram Bheem","Narayanpet","Bhadradi Kothagudem","Medchal Malkajgiri","Karimnagar","Peddapalli","Jagtial","Mahabubabad","Warangal Urban","Siddipet","Medak","Sangareddy","Nizamabad","Kamareddy","Nalgonda","Suryapet","Mahabubnagar","Rajanna Sircilla","Nagarkurnool","Jayashankar Bhupalapally","Mulugu","Khammam","Kothagudam","Hyderabad","Jogulamba Gadwal","Jangaon","Vikarabad","Wanaparthy"]
+
+},{
+  key: "Kerala",
+  name: "Kerala",
+  cities: ["Alappuzha","Ernakulam","Idukki","Kannur","Kasaragod","Kollam","Kottayam","Kozhikode","Malappuram","Palakkad","Pathanamthitta","Thrissur","Thiruvananthapuram","Wayanad"]
+},{
+  key: "Delhi",
+  name: "Delhi",
+  cities: ["Central Delhi","South East Delhi","West Delhi","South Delhi","North Delhi","Shahdara","South West Delhi","East Delhi","New Delhi","North West Delhi","North East Delhi"]
+},{
+  key: "Tamil Nadu",
+  name: "Tamil Nadu",
+  cities: ["Chennai","Chengalpattu","Thiruvallur","Coimbatore","Kancheepuram","Cuddalore","Salem","Madurai","Thiruvannamalai","Theni","Vellore","Virudhunagar","Thoothukudi","Ranipet","Kanniyakumari","Tirunelveli","Viluppuram","Thanjavur","Trichy","Kallakurichi","Pudukkottai","Dindigul","Tiruppur","Tenkasi","Thiruvarur","Erode","Namakkal","Ramanathapuram","Nagapattinam","Sivagangai","Tirupathur","Krishnagiri","Nilgiris","Dharmapuri","Ariyalur","Karur","Perambalur"]
+},{
+  key: "Uttar Pradesh",
+  name: "Uttar Pradesh",
+  cities:["Lucknow","Kanpur Nagar","Prayagraj","Gorakhpur","Ghaziabad","Varanasi","Gautam Buddha Nagar","Bareilly","Meerut","Moradabad","Aligarh","Jhansi","Saharanpur","Barabanki","Ayodhya","Ballia","Agra","Deoria","Shahjahanpur","Lakhimpu Kheri","Jaunpur","Muzaffarnagar","Kushinagar","Rampur","Maharajganj","Hardoi","Azamgarh","Etawah","Mathura","Ghazipur","Gonda","Pratapgarh","Bulandshahr","Basti","Sitapur","Pilibhit","Unnao","Chandauli","Sultanpur","Siddharthnagar","Bijnor","Bahraich","Farrukhabad","Sonbhadra","Amroha","Budaun","Rae Bareli","Mainpuri","Hapur","Firozabad","Sant Kabir Nagar","Lalitpur","Kannauj","Mirzapur","Mau","Amethi","Shamli","Auraiya","Jalaun","Sambhal","Fatehpur","Banda","Etah","Kanpur Dehat","Bhadohi","Balrampur","Kaushambi","Ambedkar Nagar","Kasganj","Chitrakoot","Baghpat","Hamirpur","Hathras","Shrawasti","Mahoba"] 
+},{
+   key: "West Bengal",
+   name: "West Bengal",
+   cities: ["Kolkata","North 24 Parganas","Howrah","South 24 Parganas","Hooghly","Purba Medinipur","Paschim Medinipur","Darjeeling","Nadia","Paschim Bardhaman","Malda","Jalpaiguri","Murshidabad","Cooch Behar","Bankura","Dakshin Dinajpur","Purba Bardhaman","Alipurduar","Birbhum","Uttar Dinajpur","Purulia","Kalimpong","Jhargram"]
+},{
+   key: "Odisha",
+   name: "Odisha",
+   cities:["Cuttack","Ganjam","Bhubaneswar","Khordha","Puri","Jajapur","Mayurbhanj","Baleswar","Sundargarh","Rayagada","Bargarh","Koraput","Sambalpur","State Pool","Jagatsinghpur","Bhadrak","Kendrapara","Nayagarh","Jharsuguda","Kandhamal","Keonjhar","Bolangir","Angul","Dhenkanal","Nabarangpur","Malkangiri","Gajapati","Kalahandi","Nuapada","Subarnapur","Boudh","Deogarh"]
+},{
+   key: "Bihar",
+   name: "Bihar",
+   cities:["Patna","Muzaffarpur","Bhagalpur","East Champaran","Purnia","Begusarai","Madhubani","Nalanda","Gaya","Katihar","Rohtas","Saran","Araria","Saharsa","West Champaran","Gopalganj","Vaishali","Supaul","Samastipur","Bhojpur","Siwan","Aurangabad","Buxar","Sitamarhi","Madhepura","Darbhanga","Kishanganj","Munger","Jehanabad","Nawada","Lakhisarai","Khagaria","Banka","Jamui","Sheikhpura","Arwal","Kaimur","Sheohar"]
+},{
+   key: "Assam",
+   name: "Assam",
+   cities:["Kamrup Metropolitan","Dibrugarh","Jorhat","Cachar","Kamrup","Nagaon","Golaghat","Tinsukia","Lakhimpur","Sonitpur","Darrang","Dhubri","Hojai","Hailakandi","Bongaigaon","Karimganj","Barpeta","Nalbari","Dhemaji","Udalguri","Baksa","Goalpara","Morigaon","Karbi Anglong","Sivasagar","Biswanath","Kokrajhar","Chirang","Dima Hasao","Majuli","Charaideo","South Salmara Mankachar","West Karbi Anglong"]
+},{
+   key: "Gujarat",
+   name: "Gujarat",
+   cities:["Ahmedabad","Surat","Vadodara","Rajkot","Jamnagar","Bhavnagar","Gandhinagar","Junagadh","Mehsana","Panchmahal","Bharuch","Kutch","Amreli","Banaskantha","Patan","Surendranagar","Morbi","Dahod","Gir Somnath","Kheda","Navsari","Valsad","Anand","Sabarkantha","Mahisagar","Narmada","Botad","Tapi","Aravalli","Devbhumi Dwarka","Chhota Udaipur","Porbandar"]
+},{
+   key: "Rajasthan",
+   name: "Rajasthan",
+   cities:["Jaipur","Jodhpur","Alwar","Kota","Ajmer","Bikaner","Pali","Udaipur","Bhilwara","Bharatpur","Sikar","Nagaur","Dholpur","Barmer","Jalore","Jhalawar","Sirohi","Rajsamand","Churu","Dungarpur","Jhunjhunu","Chittorgarh","Ganganagar","Tonk","Baran","Bundi","Banswara","Dausa","Hanumangarh","Karauli","Sawai Madhopur","Jaisalmer","Pratapgarh"]
+},{
+   key: "Madhya Pradesh",
+   name: "Madhya Pradesh",
+   cities:["Indore","Bhopal","Gwalior","Jabalpur","Khargone","Ujjain","Morena","Sagar","Narsinghpur","Dhar","Shivpuri","Neemuch","Ratlam","Shahdol","Betul","Barwani","Hoshangabad","Rewa","Damoh","Vidisha","Sehore","Mandsaur","Satna","Khandwa","Dewas","Jhabua","Chhindwara","Rajgarh","Raisen","Chhatarpur","Katni","Datia","Balaghat","Anuppur","Seoni","Alirajpur","Bhind","Harda","Shajapur","Sidhi","Singrauli","Sheopur","Tikamgarh","Guna","Mandla","Burhanpur","Panna","Umaria","Ashoknagar","Agar Malwa","Niwari"] 
+},{
+   key: "Haryana",
+   name: "Haryana",
+   cities:["Gurugram","Faridabad","Sonipat","Ambala","Karnal","Panipat","Hisar","Panchkula","Rohtak","Rewari","Kurukshetra","Yamunanagar","Sirsa","Mahendragarh","Bhiwani","Palwal","Jhajjar","Kaithal","Fatehabad","Jind","Nuh","Charkhi Dadri"]
+},{
+   key: "Chhattisgarh",
+   name: "Chhattisgarh",
+   cities:["Raipur","Durg","Rajnandgaon","Bilaspur","Raigarh","Janjgir Champa","Bastar","Korba","Baloda Bazar","Surguja","Dhamtari","Mahasamund","Dakshin Bastar Dantewada","Balod","Uttar Bastar Kanker","Kabeerdham","Sukma","Bijapur","Surajpur","Mungeli","Gariaband","Koriya","Bametara","Kondagaon","Narayanpur","Jashpur","Balrampur","Gaurela Pendra Marwahi"]
+},{
+   key: "Punjab",
+   name: "Punjab",
+   cities:["Ludhiana","Jalandhar","Patiala","S.A.S. Nagar","Amritsar","Gurdaspur","Bathinda","Hoshiarpur","Firozpur","Pathankot","Sangrur","Kapurthala","Faridkot","Muktsar","Fazilka","Moga","Rupnagar","Fatehgarh Sahib","Barnala","Tarn Taran","S.B.S. Nagar","Mansa"]
+},{
+   key: "Jharkhand",
+   name: "Jharkhand",
+   cities:["Ranchi","East Singhbhum","Dhanbad","Bokaro","West Singhbhum","Hazaribagh","Ramgarh","Giridih","Koderma","Saraikela Kharsawan","Palamu","Deoghar","Garhwa","Gumla","Simdega","Godda","Khunti","Latehar","Lohardaga","Sahibganj","Chatra","Dumka","Jamtara","Pakur"]
+},{
+   key: "Jammu and Kashmir",
+   name: "Jammu and Kashmir",
+   cities:["Srinagar","Jammu","Budgam","Baramulla","Pulwama","Kupwara","Anantnag","Bandipora","Ganderbal","Rajouri","Udhampur","Kulgam","Doda","Kathua","Shopiyan","Punch","Samba","Ramban","Kishtwar","Reasi"]
+},{
+   key: "Uttarakhand",
+   name: "Uttarakhand",
+   cities:["Dehradun","Haridwar","Udham Singh Nagar","Nainital","Tehri Garhwal","Uttarkashi","Pauri Garhwal","Almora","Chamoli","Pithoragarh","Champawat","Rudraprayag","Bageshwar"]
+},{
+   key: "Goa",
+   name: "Goa",
+   cities:["South Goa","North Goa"]
+},{
+   key: "Puducherry",
+   name: "Puducherry",
+   cities:["Puducherry","Karaikal","Yanam","Mahe"]
+},{
+   key: "Tripura",
+   name: "Tripura",
+   cities:["West Tripura","Gomati","Dhalai","South Tripura","Sipahijala","North Tripura","Unokoti","Khowai"]
+},{
+   key: "Himachal Pradesh",
+   name: "Himachal Pradesh",
+   cities:["Solan","Kangra","Sirmaur","Mandi","Shimla","Una","Hamirpur","Chamba","Bilaspur","Kullu","Kinnaur","Lahaul and Spiti"]
+},{
+   key: "Chandigarh",
+   name: "Chandigarh",
+   cities:["Chandigarh"]
+},{
+   key: "Manipur",
+   name: "Manipur",
+   cities:["Imphal West","CAPF Personnel","Imphal East","Thoubal","Churachandpur","Tamenglong","Bishnupur","Kangpokpi","Ukhrul","Senapati","Kakching","Noney","Jiribam","Kamjong","Chandel","Tengnoupal","Pherzawl"]
+},{
+   key: "Arunachal Pradesh",
+   name: "Arunachal Pradesh",
+   cities:["Papum Pare","Changlang","West Kameng","East Siang","West Siang","Tirap","Tawang","Upper Subansiri","East Kameng","Lohit","Namsai","Lower Siang","Lower Dibang Valley","Lower Subansiri","Longding","Upper Siang","Anjaw","Lepa Rada","Kurung Kumey","Pakke Kessang","Siang","Kra Daadi","Shi Yomi","Kamle","Upper Dibang Valley"]
+},{
+   key: "Nagaland",
+   name: "Nagaland",
+   cities:["Dimapur","Kohima","Mon","Peren","Zunheboto","Tuensang","Mokokchung","Phek","Wokha","Kiphire","Longleng"]
+},{
+   key: "Meghalaya",
+   name: "Meghalaya",
+   cities:["East Khasi Hills","West Garo Hills","Ribhoi","East Jaintia Hills","East Garo Hills","West Khasi Hills","South West Garo Hills","North Garo Hills","West Jaintia Hills","South Garo Hills","South West Khasi Hills"]  
+},{
+   key: "Ladakh",
+   name: "Ladakh",
+   cities:["Leh","Kargil"]
+},{
+   key: "Andaman and Nicobar Islands",
+   name: "Andaman and Nicobar Islands",
+   cities:["South Andaman","North and Middle Andaman"]  
+},{
+   key: "Sikkim",
+   name: "Sikkim",
+   cities:["East Sikkim","South Sikkim","West Sikkim","North Sikkim"]
+},{
+   key: "Mizoram",
+   name: "Mizoram",
+   cities:["Aizawl","Lunglei","Kolasib","Lawngtlai","Serchhip","Mamit","Saiha","Champhai","Saitual","Hnahthial","Khawzawl"]
+},{
+   key: "Dadra and Nagar Haveli",
+   name: "Dadra and Nagar Haveli",
+   cities: ["Dadra and Nagar Haveli"]
+},{
+   key: "Lakshadweep",
+   name: "Lakshadweep",
+   cities:["Lakshadweep"]
+}   
+];
+
+//populate states
+for (var i = 0; i < States.length; i++) {
+  var opt = States[i];
+  var el = document.createElement("option");
+  el.textContent = opt.name;
+  el.value = opt.key;
+  StatesList.appendChild(el);
+}
+//Populate initial cities
+populateCities();
+
+
+//populate cities
+function populateCities() {
+  //clear the cities list
+  document.getElementById('CitiesList').options.length = 0;
+  var e = document.getElementById("StatesList");
+  var selectedState = e.options[e.selectedIndex].value;
+  var listOfCities;
+  for (var i = 0; i < States.length; i++) {
+    if (States[i].key == selectedState) {
+      listOfCities = States[i].cities;
+      break;
+    }
+  }
+  //populate Cities DropDown menu
+  for (var i = 0; i < listOfCities.length; i++) {
+    var opt = listOfCities[i];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    CitiesList.appendChild(el);
+  }
+}
+
+
+  function getData() {
+    var CitiesList = document.getElementById("CitiesList").value;
+
+   $.getJSON('https://api.covidindiatracker.com/state_data.json', function(result){
+   
+    for(i in result) {
+
+for(j in result){
+
+if(result[i]["state"] == StatesList.value && result[i]["districtData"][j]["name"] == CitiesList) {
+
+document.getElementById("conf").value = result[i]["districtData"][j]["confirmed"] ;
+document.getElementById("rec").value = result[i]["districtData"][j]["recovered"];
+document.getElementById("dec").value = result[i]["districtData"][j]["deaths"];
+
+   
+}
+
+    }
+
+    }
+  });
+}
+
+</script>
+
+<style type="text/css">
+    td {
+    width: 200px;
+    font-size: 15px;
+    }
+    select, input {
+    height: 35px;
+    width: 300px;
+    font-size: 15px;
+    }
+    </style>
+</head>
+
+<body style="padding-top: 100px;">
+<fieldset style="padding-left: 100px; padding-right: 400px;">
+        <legend align="center">COVID TRACKER</legend>
+   <table align="center">
+<tr>
+<td><label for="conf">TOTAL CONFIRMED</label></td>
+<td><input type="text" name="conf" id="conf" value="0" disabled /></td>
+</tr>
+
+<tr>
+<td><label for="rec">RECOVERED CASES</label></td>
+<td><input type="text" name="rec" id="rec" value="0" disabled /></td>
+</tr>
+<tr>
+<td><label for="dec">DECEASED CASES</label></td>
+<td><input type="text" name="dec" id="dec" value="0" disabled /></td>
+</tr>
+
+<tr>
+<td>
+<button onclick="getData()">FETCH DATA</button>
+</td>
+</tr>
+</table>
+</fieldset>
+
+  </body>
+</html>
